@@ -65,7 +65,6 @@ function attachFormEventHandlers(formElement) {
   });
 
   const inputElement = formElement.querySelector("input");
-  console.log(inputElement);
   inputElement.addEventListener("input", (event) => {
     inputCheckEH(event, inputElement);
   });

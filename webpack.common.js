@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const DotEnv = require('dotenv-webpack');
 
 module.exports = {
   entry: "./src/js/index.js",
@@ -36,5 +37,6 @@ module.exports = {
       title: "Odin Weather",
       template: "./src/template.html",
     }),
+    new DotEnv()
   ],
 };

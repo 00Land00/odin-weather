@@ -1,3 +1,4 @@
+import { getLocationWeatherData } from "js/services/weather-service.js";
 import { cityManager } from "js/models/city.js";
 
 function inputCheckEH(event, inputElement) {
@@ -7,18 +8,41 @@ function inputCheckEH(event, inputElement) {
   }
 }
 
-function processResponseData(weatherData) {}
+function processResponseData(responseJson) {
+  return {
+    name: responseJson.resolvedAddress,
+    latitude: responseJson.latitude,
+    longitude: responseJson.longitude,
+    temp: responseJson.currentConditions.temp,
+    humidity: responseJson.currentConditions.humidity,
+    windspeed: responseJson.currentConditions.windspeed,
+    precipprob: responseJson.currentConditions.precipprob,
+    precip: responseJson.currentConditions.precip,
+    description: responseJson.description,
+    tomorrow: {
+      date: responseJson.days[1].datetime,
+      temp: responseJson.days[1].temp,
+    },
+    dayAfter: {
+      date: responseJson.days[2].datetime,
+      temp: responseJson.days[2].temp,
+    }
+  };
+}
 
 async function addCityEH(event, cityElement) {
   const formData = new FormData(event.target);
   const cityInput = formData.get('city');
   
-  // make api call
-  // processResponseData
-
-  cityManager.addCity(cityInput, {}, cityElement);
-
-  return { success: true, cityInput, message: '', };
+  try {
+    const responseJson = await getLocationWeatherData(cityInput);
+    const weatherData = processResponseData(responseJson);
+    cityManager.addCity(weatherData.name, weatherData, cityElement);
+    return { success: true, cityInput: weatherData.name, message: '', };
+  } catch(error) {
+    console.error(error);
+    return { success: false, cityInput: null, message: error.message, };
+  }
 }
 
 async function updateCurrentCityEH(event) {

@@ -4,6 +4,13 @@ const cityManager = (function () {
   const cities = [];
 
   function createCity(name, weatherData, cityElement) {
+    for (let city in cities) {
+      if (city.name === name) {
+        removeCity(city.id);
+        break;
+      }
+    }
+
     if (cities.length >= maxCapacity) {
       cities[0].cityElement.remove();
       cities.shift();
