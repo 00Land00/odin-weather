@@ -1,0 +1,36 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+
+  z-index: -3;
+}
+
+.city-container {
+  position: relative;
+  height: calc(max(100vh, 100vw) / 3);
+  width: calc(max(100vh, 100vw) / 3);
+  padding: 50px;
+  border: 1px solid black;
+  z-index: -2;
+}
+
+.city-area {
+  position: relative;
+  height: 100%;
+  width: 100%;
+
+  z-index: -1;
+}
+
+img,
+input[type="image"],
+button[type="submit"] {
+  height: 25px;
+  width: 25px;
+}
+

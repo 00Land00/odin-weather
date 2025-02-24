@@ -1,0 +1,42 @@
+.form-component {
+  display: flex;
+  padding: 5px 5px 5px 15px;
+  position: absolute;
+
+  align-items: stretch;
+
+  border-radius: 25px;
+  outline: 1px solid black;
+  background-color: white;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+input[type="text"] {
+  field-sizing: content;
+
+  appearance: none;
+  border: none;
+  outline: none;
+
+  text-transform: capitalize;
+  letter-spacing: normal;
+  font-size: 1em;
+  line-height: 1em;
+  padding-bottom: 0.05em;
+}
+
+input::placeholder {
+  text-transform: none;
+  font-style: italic;
+  letter-spacing: normal;
+}
+
+.submit-btn-form {
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+
+  cursor: pointer;
+}
