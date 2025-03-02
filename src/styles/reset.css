@@ -15,10 +15,13 @@
 }
 
 body {
+  position: relative;
   font-family: var(--body-font), serif;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  z-index: -5;
 }
 
 img,

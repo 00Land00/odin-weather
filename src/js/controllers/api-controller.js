@@ -4,7 +4,10 @@ import { cityManager } from "js/models/city.js";
 function inputCheckEH(event, inputElement) {
   const letterRegex = /^[A-Za-z]+$/g;
   if (!letterRegex.test(event.target.value)) {
-    inputElement.value = inputElement.value.substring(0, inputElement.value.length - 1);
+    inputElement.value = inputElement.value.substring(
+      0,
+      inputElement.value.length - 1,
+    );
   }
 }
 
@@ -26,22 +29,22 @@ function processResponseData(responseJson) {
     dayAfter: {
       date: responseJson.days[2].datetime,
       temp: responseJson.days[2].temp,
-    }
+    },
   };
 }
 
 async function addCityEH(event, cityElement) {
   const formData = new FormData(event.target);
-  const cityInput = formData.get('city');
-  
+  const cityInput = formData.get("city");
+
   try {
     const responseJson = await getLocationWeatherData(cityInput);
     const weatherData = processResponseData(responseJson);
-    cityManager.addCity(weatherData.name, weatherData, cityElement);
-    return { success: true, cityInput: weatherData.name, message: '', };
-  } catch(error) {
+    const city = cityManager.addCity(weatherData.name, weatherData, cityElement);
+    return { success: true, city: city, message: "" };
+  } catch (error) {
     console.error(error);
-    return { success: false, cityInput: null, message: error.message, };
+    return { success: false, city: null, message: error.message };
   }
 }
 

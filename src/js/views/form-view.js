@@ -1,5 +1,6 @@
-import { inputCheckEH, addCityEH } from "js/controllers/api-controller";
 import { cityManager } from "js/models/city.js";
+import { inputCheckEH, addCityEH } from "js/controllers/api-controller";
+import { displayInfoCard } from "js/views/info-card-view";
 
 import SubmitBtn from "media/chevron-right.svg";
 import City from "media/city.svg";
@@ -28,12 +29,15 @@ function createFormElement() {
   return formElement;
 }
 
-function createCityTextElement(cityInput) {
+function createCityTextElement(city) {
   const cityText = document.createElement("p");
-  cityText.className = "city-text";
-  cityText.innerHTML = cityInput;
-  cityText.style.position = "absolute";
-  cityText.style.transform = "translate(-50%, 0)";
+  cityText.classList.add("city-text");
+  cityText.innerHTML = city.name;
+
+  cityText.addEventListener("click", (event) => {
+    event.stopPropagation();
+    displayInfoCard(city);
+  });
 
   return cityText;
 }
@@ -45,17 +49,24 @@ function attachFormEventHandlers(formElement) {
     const parentElement = formElement.parentNode;
     parentElement.className = "city-group";
 
-    const { success, cityInput, message } = await addCityEH(event, parentElement);
+    const { success, city, message } = await addCityEH(
+      event,
+      parentElement,
+    );
     if (!success) {
       // form validation, display error message using message too
       return;
     }
-    
-    const cityText = createCityTextElement(cityInput);
-    cityText.style.left = formElement.style.left;
-    cityText.style.top = formElement.style.top;
-    
+
+    const cityText = createCityTextElement(city);
     parentElement.append(cityText);
+    const cityMarker = parentElement.querySelector(".city-marker");
+    cityMarker.addEventListener("click", (event) => {
+      event.stopPropagation();
+      displayInfoCard(city);
+    });
+
+    cityManager.updateCityPositions();
 
     formElement.remove();
   });
@@ -73,10 +84,7 @@ function attachFormEventHandlers(formElement) {
 function createForm() {
   const formElement = createFormElement();
   attachFormEventHandlers(formElement);
-
-  formElement.style.left = `0%`;
-  formElement.style.top = `-40px`;
-  formElement.style.transform = "translate(-50%, -50%)";
+  formElement.classList.add("city-form");
 
   return formElement;
 }
@@ -84,22 +92,24 @@ function createForm() {
 function createCityElement() {
   const cityElement = document.createElement("img");
   cityElement.src = City;
-  cityElement.style.position = "absolute";
-  cityElement.style.left = `0%`;
-  cityElement.style.top = `0%`;
-  cityElement.style.transform = "translate(-50%, -50%)";
+  cityElement.classList.add("city-marker");
+
   return cityElement;
 }
 
 function checkValidNewCityPos(xPosPercent, yPosPercent) {
-  const minDistance = 30;
+  const minDistance = 10;
   const cities = cityManager.getCities();
   for (let city in cities) {
     city = cities[city];
     let cityXPosPercent = city.cityElement.style.left;
-    cityXPosPercent = Number(cityXPosPercent.substring(0, cityXPosPercent.length - 1));
+    cityXPosPercent = Number(
+      cityXPosPercent.substring(0, cityXPosPercent.length - 1),
+    );
     let cityYPosPercent = city.cityElement.style.top;
-    cityYPosPercent = Number(cityYPosPercent.substring(0, cityYPosPercent.length - 1));
+    cityYPosPercent = Number(
+      cityYPosPercent.substring(0, cityYPosPercent.length - 1),
+    );
 
     const xDiff = xPosPercent - cityXPosPercent;
     const xDiffSquared = xDiff * xDiff;
@@ -127,7 +137,7 @@ function createCityGroup(event, domRect) {
 
   if (containerGroup) {
     containerGroup.remove();
-  } 
+  }
 
   containerGroup = document.createElement("div");
   containerGroup.classList.add("city-form-group");
@@ -154,6 +164,7 @@ function initializeClickableArea() {
     }
 
     cityArea.append(containerGroup);
+    cityArea.querySelector(".input-form").focus();
   });
 }
 

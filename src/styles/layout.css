@@ -1,4 +1,4 @@
-body {
+.web-content {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,15 +8,33 @@ body {
   height: 100vh;
 
   z-index: -3;
+  overflow: hidden;
+}
+
+.info-card {
+  position: relative;
+  height: calc(100vh - 100px);
+  width: calc(100vw / 3);
+  margin: 50px;
+
+  border: 1px solid black;
+  border-radius: 15px;
+}
+
+.minimized {
+  bottom: calc(-1 * (100vh - 100px));
 }
 
 .city-container {
   position: relative;
-  height: calc(max(100vh, 100vw) / 3);
-  width: calc(max(100vh, 100vw) / 3);
-  padding: 50px;
-  border: 1px solid black;
+  height: calc(100vh - 100px);
+  width: calc(100vw / 3);
+  padding: 20px;
   z-index: -2;
+}
+
+.city-container:hover {
+  background-color: rgb(238, 238, 238);
 }
 
 .city-area {
@@ -27,6 +45,28 @@ body {
   z-index: -1;
 }
 
+.city-marker {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.city-form {
+  left: 0%;
+  top: -40px;
+  transform: translate(-50%, -50%);
+}
+
+.city-text {
+  position: absolute;
+  left: 0%;
+  top: -40px;
+  transform: translate(-50%, 0);
+  cursor: pointer;
+}
+
 img,
 input[type="image"],
 button[type="submit"] {
@@ -34,3 +74,10 @@ button[type="submit"] {
   width: 25px;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
+.removed {
+  display: none;
+}
