@@ -12,23 +12,33 @@
 }
 
 .info-card {
-  position: relative;
+  position: absolute;
   height: calc(100vh - 100px);
   width: calc(100vw / 3);
-  margin: 50px;
+  min-width: 545px;
 
   border: 1px solid black;
   border-radius: 15px;
+  cursor: pointer;
+  background-color: white;
+}
+
+.left {
+  left: 50px;
+}
+
+.right {
+  right: 50px;
 }
 
 .minimized {
-  bottom: calc(-1 * (100vh - 100px));
+  bottom: calc(-1 * (80vh - 100px));
 }
 
 .city-container {
   position: relative;
   height: calc(100vh - 100px);
-  width: calc(100vw / 3);
+  width: calc(100vw / 2);
   padding: 20px;
   z-index: -2;
 }

@@ -49,10 +49,7 @@ function attachFormEventHandlers(formElement) {
     const parentElement = formElement.parentNode;
     parentElement.className = "city-group";
 
-    const { success, city, message } = await addCityEH(
-      event,
-      parentElement,
-    );
+    const { success, city, message } = await addCityEH(event, parentElement);
     if (!success) {
       // form validation, display error message using message too
       return;
@@ -165,6 +162,16 @@ function initializeClickableArea() {
 
     cityArea.append(containerGroup);
     cityArea.querySelector(".input-form").focus();
+  });
+
+  document.addEventListener("click", (event) => {
+    const cityFormGroup = document.querySelector(".city-form-group");
+    if (cityFormGroup) {
+      const cityArea = document.querySelector(".city-area");
+      if (!cityArea.contains(event.target)) {
+        cityFormGroup.remove();
+      }
+    }
   });
 }
 

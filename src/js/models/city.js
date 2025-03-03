@@ -68,12 +68,14 @@ const cityManager = (function () {
       return;
     }
 
-    cities.forEach(city => {
+    cities.forEach((city) => {
       const latRange = latMinMax[1] - latMinMax[0];
-      const latNormalized = (city.weatherData.latitude - latMinMax[0]) / latRange;
+      const latNormalized =
+        (city.weatherData.latitude - latMinMax[0]) / latRange;
 
       const lonRange = lonMinMax[1] - lonMinMax[0];
-      const lonNormalized = (city.weatherData.longitude - lonMinMax[0]) / lonRange;
+      const lonNormalized =
+        (city.weatherData.longitude - lonMinMax[0]) / lonRange;
 
       city.cityElement.style.left = `${lonNormalized * 100}%`;
       city.cityElement.style.top = `${(1 - latNormalized) * 100}%`;

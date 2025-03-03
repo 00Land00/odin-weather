@@ -1,0 +1,156 @@
+.info-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding-top: 60px;
+  padding-bottom: 30px;
+}
+
+.info-content > div {
+  width: 100%;
+}
+
+.handle-bar {
+  position: absolute;
+  left: 50%;
+  top: 30px;
+  width: 100px;
+  height: 10px;
+
+  border-radius: 25px;
+  background-color: black;
+  transform: translate(-50%, -50%);
+}
+
+.today {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 50px;
+}
+
+.city-name {
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.today .temp {
+  font-family: var(--temp-font);
+  font-size: 8em;
+}
+
+.weather-desc {
+  position: relative;
+  top: -20px;
+
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-wrap: wrap;
+  text-align: center;
+}
+
+.future {
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+}
+
+.future > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 5px;
+
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-top: 1px solid black;
+}
+
+.future:last-child {
+  border-bottom: 1px solid black;
+}
+
+.extra-group {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.grid-section {
+  position: relative;
+  width: 80%;
+  height: 232px;
+}
+
+.grid {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.cell {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+}
+
+.cell > img {
+  width: 100%;
+  height: 100%;
+}
+
+.v-line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  width: 2px;
+  background-color: black;
+  transform: translate(-50%, -50%);
+}
+
+.h-line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  height: 2px;
+  background-color: black;
+  transform: translate(-50%, -50%);
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  text-align: center;
+  
+  letter-spacing: 1px;
+}
+
+.value {
+  font-family: var(--details-font);
+  font-size: 2em;
+}
+
+.title {
+  position: relative;
+  top: 0px;
+  
+  text-transform: uppercase;
+  font-family: var(--details-font);
+  font-size: 0.8rem;
+}
+
+small {
+  font-size: 0.8rem;
+}

@@ -12,6 +12,7 @@ function inputCheckEH(event, inputElement) {
 }
 
 function processResponseData(responseJson) {
+  console.log(responseJson);
   return {
     name: responseJson.resolvedAddress,
     latitude: responseJson.latitude,
@@ -40,7 +41,11 @@ async function addCityEH(event, cityElement) {
   try {
     const responseJson = await getLocationWeatherData(cityInput);
     const weatherData = processResponseData(responseJson);
-    const city = cityManager.addCity(weatherData.name, weatherData, cityElement);
+    const city = cityManager.addCity(
+      weatherData.name,
+      weatherData,
+      cityElement,
+    );
     return { success: true, city: city, message: "" };
   } catch (error) {
     console.error(error);

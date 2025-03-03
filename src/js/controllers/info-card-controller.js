@@ -15,8 +15,4 @@ function infoCardMouseLeaveEH(event) {
   this.style.removeProperty("bottom");
 }
 
-export {
-  infoCardOnClickEH,
-  infoCardMouseEnterEH,
-  infoCardMouseLeaveEH,
-};
+export { infoCardOnClickEH, infoCardMouseEnterEH, infoCardMouseLeaveEH };
