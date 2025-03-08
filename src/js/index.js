@@ -12,7 +12,3 @@ window.addEventListener("DOMContentLoaded", () => {
   initializeClickableArea();
   initializeInfoCards();
 });
-
-/*
-    TODO: final tweaks
-*/

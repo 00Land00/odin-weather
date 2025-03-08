@@ -26,6 +26,8 @@
   scrollbar-width: none;  /* Firefox */
 
   z-index: 1;
+
+  --border-color: black;
 }
 
 .info-card::-webkit-scrollbar {
@@ -73,6 +75,11 @@
   cursor: pointer;
 }
 
+.city-group:hover .city-marker {
+  height: 35px;
+  width: 35px;
+}
+
 .city-form {
   left: 0%;
   top: -40px;
@@ -85,6 +92,7 @@
   top: -40px;
   transform: translate(-50%, 0);
   cursor: pointer;
+  text-align: center;
 }
 
 img,
@@ -104,7 +112,7 @@ button[type="submit"] {
 
 @media (max-width: 800px) {
   .city-container {
-    width: calc(100vw - 100px);
+    width: calc(100vw - 200px);
   }
 
   .info-card {

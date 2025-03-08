@@ -35,6 +35,7 @@
 .city-name {
   font-weight: bold;
   text-transform: uppercase;
+  text-align: center;
   letter-spacing: 2px;
 }
 
@@ -70,11 +71,11 @@
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 2px;
-  border-top: 1px solid black;
+  border-top: 1px solid var(--border-color);
 }
 
 .future:last-child {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .extra-group {
@@ -111,7 +112,7 @@
   content: "";
   width: 100vw;
   height: 2px;
-  background-color: black;
+  background-color: var(--border-color);
   position: absolute;
   top: -1em;
   transform: translate(0, -50%);
@@ -121,7 +122,7 @@
   content: "";
   height: 100%;
   width: 2px;
-  background-color: black;
+  background-color: var(--border-color);
   position: absolute;
   left: -1em;
   transform: translate(-50%, 0);
@@ -158,4 +159,32 @@
 
 small {
   font-size: 0.8rem;
+}
+
+.frigid {
+  background-image: linear-gradient(#FFFFFF, #9E9E9E);
+}
+
+.cold {
+  background-image: linear-gradient(#2A54AF, #080E50);
+}
+
+.cool {
+  background-image: linear-gradient(#5AC7DF, #0F5650);
+}
+
+.mild {
+  background-image: linear-gradient(#95BB61, #144907);
+}
+
+.warm {
+  background-image: linear-gradient(#E2CA3E, #62400B);
+}
+
+.hot {
+  background-image: linear-gradient(#EE492C, #6B2D0C);
+}
+
+.white-svg {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(165deg) brightness(109%) contrast(101%);
 }

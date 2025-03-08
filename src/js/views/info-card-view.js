@@ -123,11 +123,38 @@ function initializeInfoCards() {
   });
 }
 
+function addGradient(temp) {
+  let tempWord = '';
+  if (temp >= 30) tempWord = 'hot';
+  else if (temp >= 20) tempWord = 'warm';
+  else if (temp >= 10) tempWord = 'mild';
+  else if (temp >= 0) tempWord = 'cool';
+  else if (temp >= -20) tempWord = 'cold';
+  else tempWord = 'frigid';
+
+  const infoCards = document.querySelectorAll(".info-card");
+  infoCards.forEach((infoCard) => {
+    if (tempWord !== 'frigid') {
+      const handleBar = infoCard.querySelector(".handle-bar");
+      handleBar.style.backgroundColor = "#FFFFFF";
+      infoCard.style.color = '#FFFFFF';
+      const imgs = infoCard.querySelectorAll("img");
+      imgs.forEach(img => {
+        img.classList.add("white-svg");
+      });
+
+      infoCard.style.setProperty("--border-color", "white");
+    }
+    infoCard.classList.add(tempWord);
+  });
+}
+
 function displayInfoCard(city) {
   const leftInfoCard = document.querySelector(".info-card.left");
   const rightInfoCard = document.querySelector(".info-card.right");
 
   populateInfoCardValues(city);
+  addGradient(Math.round(city.weatherData.temp));
 
   const leftPos = parseFloat(city.cityElement.style.left) / 100;
   if (leftPos > 0.5) {
