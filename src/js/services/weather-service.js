@@ -12,7 +12,11 @@ async function getLocationWeatherData(cityName) {
     return responseJson;
   }
 
-  throw new Error(`HTTP Error ${response.status}: ${await response.text()}`);
+  if (response.status === 400) {
+    throw new Error(`${cityName} could not be found.`);
+  }
+
+  throw new Error(`An error has occurred.`);
 }
 
 export { getLocationWeatherData };

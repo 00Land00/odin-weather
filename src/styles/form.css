@@ -26,6 +26,14 @@ input[type="text"] {
   padding-bottom: 0.05em;
 }
 
+.form-component:invalid {
+  outline: 1px solid red;
+}
+
+.form-component:invalid > input {
+  color: red;
+}
+
 input::placeholder {
   text-transform: none;
   font-style: italic;

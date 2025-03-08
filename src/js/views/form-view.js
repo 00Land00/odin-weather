@@ -1,5 +1,5 @@
 import { cityManager } from "js/models/city.js";
-import { inputCheckEH, addCityEH } from "js/controllers/api-controller";
+import { inputCheckEH, addCityEH } from "js/controllers/form-controller";
 import { displayInfoCard } from "js/views/info-card-view";
 
 import SubmitBtn from "media/chevron-right.svg";
@@ -45,16 +45,21 @@ function createCityTextElement(city) {
 function attachFormEventHandlers(formElement) {
   formElement.addEventListener("submit", async (event) => {
     event.preventDefault();
+    
+    const inputElement = formElement.querySelector("input");
+    inputElement.setCustomValidity("");
+    inputElement.reportValidity();
 
     const parentElement = formElement.parentNode;
-    parentElement.className = "city-group";
-
+    
     const { success, city, message } = await addCityEH(event, parentElement);
     if (!success) {
-      // form validation, display error message using message too
+      inputElement.setCustomValidity(message);
+      inputElement.reportValidity();
       return;
     }
-
+    
+    parentElement.className = "city-group";
     const cityText = createCityTextElement(city);
     parentElement.append(cityText);
     const cityMarker = parentElement.querySelector(".city-marker");
@@ -75,6 +80,7 @@ function attachFormEventHandlers(formElement) {
   const inputElement = formElement.querySelector("input");
   inputElement.addEventListener("input", (event) => {
     inputCheckEH(event, inputElement);
+    inputElement.setCustomValidity("");
   });
 }
 
