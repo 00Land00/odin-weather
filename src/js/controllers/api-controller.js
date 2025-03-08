@@ -41,6 +41,11 @@ async function addCityEH(event, cityElement) {
   try {
     const responseJson = await getLocationWeatherData(cityInput);
     const weatherData = processResponseData(responseJson);
+    const splitAddress = weatherData.name.split(',');
+    if (splitAddress.length > 3 || splitAddress.length < 2) {
+      throw new Error(`Error: ${cityInput} is not a city`);
+    }
+
     const city = cityManager.addCity(
       weatherData.name,
       weatherData,
@@ -53,12 +58,4 @@ async function addCityEH(event, cityElement) {
   }
 }
 
-async function updateCurrentCityEH(event) {
-  // this will be used later on when we display the weather data
-  // this will require a refresh/update icon somewhere though.
-}
-
-// updateAllCitiesEH
-async function updateAllCitiesEH(event) {}
-
-export { inputCheckEH, addCityEH, updateCurrentCityEH, updateAllCitiesEH };
+export { inputCheckEH, addCityEH };

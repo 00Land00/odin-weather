@@ -74,15 +74,13 @@ function populateInfoCardValues(city) {
                 <div class="title">Precip. Prob.</div>
               </div>
             </div>
-            <div class="v-line"></div>
-            <div class="h-line"></div>
           </div>
         </div>
       </div>
     </div>
   `;
 
-  infoCards.forEach(infoCard => {
+  infoCards.forEach((infoCard) => {
     infoCard.innerHTML = innerHTML;
   });
 }
@@ -135,10 +133,12 @@ function displayInfoCard(city) {
   if (leftPos > 0.5) {
     leftInfoCard.classList.remove("hidden");
     leftInfoCard.classList.add("minimized");
+    leftInfoCard.scrollTop = 0;
     rightInfoCard.classList.add("hidden");
   } else {
     leftInfoCard.classList.add("hidden");
     rightInfoCard.classList.remove("hidden");
+    rightInfoCard.scrollTop = 0;
     rightInfoCard.classList.add("minimized");
   }
 }

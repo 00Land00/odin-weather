@@ -15,6 +15,5 @@ window.addEventListener("DOMContentLoaded", () => {
 
 /*
     TODO: form error validation
-    TODO: mobile view
     TODO: final tweaks
 */

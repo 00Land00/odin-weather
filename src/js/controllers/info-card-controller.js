@@ -1,6 +1,10 @@
 function infoCardOnClickEH(event) {
   this.classList.toggle("minimized");
   this.style.removeProperty("bottom");
+
+  if (this.classList.contains("minimized")) {
+    this.scrollTop = 0;
+  }
 }
 
 function infoCardMouseEnterEH(event) {
